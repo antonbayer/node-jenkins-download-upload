@@ -1,0 +1,19 @@
+{
+	"author": "anton bayer, catalysts gmbh",
+	"name": "jenkins-job-download-upload",
+	"version": "0.0.1",
+	"description": "jenkins job download and upload",
+	"homepage": "http://www.catalysts.cc/",
+	"dependencies": {
+		"gulp": "3.9.1",
+		"jenkins": "0.17.0"
+	},
+	"main": "Gulpfile.js",
+	"scripts": {
+		"jenkins-upload": "gulp jenkinsUpload",
+		"jenkins-download": "gulp jenkinsDownload",
+		"start": "gulp jenkinsDownload"
+	},
+	"devDependencies": {},
+	"license": "MIT"
+}
