@@ -1,4 +1,4 @@
-# node-jenkins
+# node-jenkins-download-upload
 
 create the directories jobs-download and jobs-upload
 
