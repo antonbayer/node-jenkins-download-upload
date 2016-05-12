@@ -5,6 +5,15 @@ var fs = require('fs');
 
 gulp.task('jenkinsUpload', function() {
 
+	var gitRepo = process.env.npm_config_git_repo;
+	if (gitRepo === undefined) {
+		gitRepo = "";
+	}
+	var gitGroup = process.env.npm_config_git_group;
+	if (gitGroup === undefined) {
+		gitGroup = "";
+	}
+	
 	function getAllJobs() {
 
 		fs.readdir("jobs-upload", function(err, files) {
@@ -21,7 +30,7 @@ gulp.task('jenkinsUpload', function() {
 			if (err){
 				return console.log(err);
 			}
-			checkJob(file.replace(".xml", ""), data);
+			checkJob(replacePlaceholder(file.replace(".xml", "")), replacePlaceholder(data));
 		});
 	}
 
@@ -54,9 +63,12 @@ gulp.task('jenkinsUpload', function() {
 			console.log(name + " updated.");
 		});
 	}
+	
+	function replacePlaceholder(str) {
+		return str.replace(new RegExp('#GIT_GROUP#', 'g'), gitGroup).replace(new RegExp('#GIT_REPO#', 'g'), gitRepo);
+	}
 
 	getAllJobs();
-
 });
 
 gulp.task('jenkinsDownload', function() {
@@ -95,5 +107,4 @@ gulp.task('jenkinsDownload', function() {
 	}
 
 	getAllJobs();
-
 });
