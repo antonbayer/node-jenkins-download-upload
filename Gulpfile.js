@@ -27,15 +27,15 @@ gulp.task('jenkinsUpload', function() {
 
 	function checkJob(name, content) {
 
-		jenkins.job.config(name, function(err, data) {
-			if (err) {
-				if(err.notFound) {
-					createJob(name, content);
-					return;
-				}
-				throw err;
+		jenkins.job.exists(name, function(err, exists) {
+			if (err) throw err;
+
+			if(exists) {
+				updateJob(name, content);
 			}
-			updateJob(name, content);
+			else {
+				createJob(name, content);
+			}
 		});
 	}
 
