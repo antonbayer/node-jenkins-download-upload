@@ -5,6 +5,22 @@ var fs = require('fs');
 
 gulp.task('jenkinsUpload', function() {
 
+	var projectName = process.env.npm_config_project_name;
+	if (projectName === undefined) {
+		projectName = "";
+	}
+	var artifactGroup = process.env.npm_config_artifact_group;
+	if (artifactGroup === undefined) {
+		artifactGroup = "";
+	}
+	var artifactId = process.env.npm_config_artifact_id;
+	if (artifactId === undefined) {
+		artifactId = "";
+	}
+	var gitRepo = process.env.npm_config_git_repo;
+	if (gitRepo === undefined) {
+		gitRepo = "";
+	}
 	var gitRepo = process.env.npm_config_git_repo;
 	if (gitRepo === undefined) {
 		gitRepo = "";
@@ -65,7 +81,11 @@ gulp.task('jenkinsUpload', function() {
 	}
 	
 	function replacePlaceholder(str) {
-		return str.replace(new RegExp('#GIT_GROUP#', 'g'), gitGroup).replace(new RegExp('#GIT_REPO#', 'g'), gitRepo);
+		return str.replace(new RegExp('#GIT_GROUP#', 'g'), gitGroup)
+			.replace(new RegExp('#GIT_REPO#', 'g'), gitRepo)
+			.replace(new RegExp('#PROJECT_NAME#', 'g'), projectName)
+			.replace(new RegExp('#ARTIFACT_GROUP#', 'g'), artifactGroup)
+			.replace(new RegExp('#ARTIFACT_ID#', 'g'), artifactId);
 	}
 
 	getAllJobs();
