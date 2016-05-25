@@ -6,12 +6,14 @@
 	"homepage": "http://www.catalysts.cc/",
 	"dependencies": {
 		"gulp": "3.9.1",
-		"jenkins": "0.17.0"
+		"jenkins": "0.17.0",
+		"gitlab": "1.6.0"
 	},
 	"main": "Gulpfile.js",
 	"scripts": {
 		"jenkins-upload": "gulp jenkinsUpload",
 		"jenkins-download": "gulp jenkinsDownload",
+		"gitlab-webhook": "gulp gitlabWebhook",
 		"start": "gulp jenkinsDownload"
 	},
 	"devDependencies": {},

@@ -23,10 +23,6 @@ gulp.task('jenkinsUpload', function() {
 	if (gitRepo === undefined) {
 		gitRepo = "";
 	}
-	var gitRepo = process.env.npm_config_git_repo;
-	if (gitRepo === undefined) {
-		gitRepo = "";
-	}
 	var gitGroup = process.env.npm_config_git_group;
 	if (gitGroup === undefined) {
 		gitGroup = "";
