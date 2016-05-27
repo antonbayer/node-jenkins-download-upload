@@ -58,9 +58,9 @@ gulp.task('jenkinsMergeVerifierParsing', function() {
 				output += "npm run #JOB#"
 					+ " --git_group=" + repo[0]
 					+ " --git_repo=" + repo[1]
-					+ " --project-name=" + projectName
-					+ " --artifact-group=" + groupId
-					+ " --artifact-id=" + artId
+					+ " --project_name=" + projectName
+					+ " --artifact_group=" + groupId
+					+ " --artifact_id=" + artId
 					+ "\n";
 					
 				callback(index);
