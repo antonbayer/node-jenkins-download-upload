@@ -7,13 +7,15 @@
 	"dependencies": {
 		"gulp": "3.9.1",
 		"jenkins": "0.17.0",
-		"gitlab": "1.6.0"
+		"gitlab": "1.6.0",
+		"xml2js": "0.4.16"
 	},
 	"main": "Gulpfile.js",
 	"scripts": {
 		"jenkins-upload": "gulp jenkinsUpload",
 		"jenkins-download": "gulp jenkinsDownload",
 		"gitlab-webhook": "gulp gitlabWebhook",
+		"gitlab-jenkins-merge-verifier-parsing": "gulp jenkinsMergeVerifierParsing",
 		"start": "gulp jenkinsDownload"
 	},
 	"devDependencies": {},
