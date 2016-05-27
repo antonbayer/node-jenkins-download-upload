@@ -25,7 +25,11 @@ gulp.task('jenkinsMergeVerifierParsing', function() {
 						parseJob(files[i], i, callback);
 					}
 					else {
-						console.log(output);
+						fs.writeFile("jobs-parsing/list.txt", output, function(err) {
+							if(err) {
+								return console.log(err);
+							}
+						}); 
 					}
 				};
 				parseJob(files[0], 0, callback);
