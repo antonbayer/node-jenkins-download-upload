@@ -8,8 +8,6 @@ var gitlab = require('gitlab')({
   token: gitlabProperties.token
 });
 
-var fs = require('fs');
-
 gulp.task('gitlabWebhook', function() {
 
 	var projectName = process.env.npm_config_project_name;
