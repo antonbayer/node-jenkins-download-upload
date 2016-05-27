@@ -12,6 +12,8 @@ gulp.task('jenkinsMergeVerifierParsing', function() {
 	
 	function getAllJobs() {
 
+		fs.unlinkSync("jobs-parsing/list.txt");
+	
 		fs.readdir("jobs-parsing", function(err, files) {
 
 			if (err){
@@ -45,7 +47,7 @@ gulp.task('jenkinsMergeVerifierParsing', function() {
 			}
 			parseString(data, {trim: true}, function (err, result) {
 
-			var repo = result['maven2-moduleset'].scm[0].userRemoteConfigs[0]['hudson.plugins.git.UserRemoteConfig'][0].url[0]
+				var repo = result['maven2-moduleset'].scm[0].userRemoteConfigs[0]['hudson.plugins.git.UserRemoteConfig'][0].url[0]
 					.replace(jenkinsProperties.sshGitPrefix, '').replace(jenkinsProperties.sshGitPostfix, '').split('/');
 
 				var projectName = file.replace('-merge-request-verifier.xml','');
@@ -53,7 +55,14 @@ gulp.task('jenkinsMergeVerifierParsing', function() {
 				var artId = result['maven2-moduleset'].rootModule[0].artifactId[0];
 				var groupId = result['maven2-moduleset'].rootModule[0].groupId[0];
 				
-				output += "ArtId:" + artId + ";GroupId:" + groupId + ";ProjectName;" + projectName + ";Namespace:" + repo[0] + ";Repo:" + repo[1] + "\n";
+				output += "npm run #JOB#"
+					+ " --git_group=" + repo[0]
+					+ " --git_repo=" + repo[1]
+					+ " --project-name=" + projectName
+					+ " --artifact-group=" + groupId
+					+ " --artifact-id=" + artId
+					+ "\n";
+					
 				callback(index);
 			});
 		});
