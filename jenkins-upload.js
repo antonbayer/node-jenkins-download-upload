@@ -65,10 +65,10 @@ gulp.task('jenkinsUpload', function() {
 			if (err) throw err;
 
 			if(exists) {
-				updateJob(name, content);
+				updateJob(name, content, index, callback);
 			}
 			else {
-				createJob(name, content);
+				createJob(name, content, index, callback);
 			}
 		});
 	}
